@@ -73,7 +73,7 @@ export const TablePagination = (props: TablePaginationProps) => {
       <Pagination
         count={Math.ceil(count / rowsPerPage)}
         page={page}
-        onChange={(e, newPage) => onPageChange?.(newPage)}
+        onChange={(_, newPage) => onPageChange?.(newPage)}
       />
     </Box>
   );

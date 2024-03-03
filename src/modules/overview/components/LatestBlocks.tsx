@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { Grid, Skeleton } from "@mui/material";
 import { CardBlocks } from "./CardBlocks";
-import { formatDate } from "@/utils";
 import { ResponseBlocksLatest } from "..";
 import { interval } from "rxjs";
 import { switchMap } from "rxjs/operators";
 import { axios } from "@/libs/axios";
 
-export const LatestBlocks = () => {
+interface Props {
+  blockTime: number;
+}
+
+export const LatestBlocks = ({ blockTime }: Props) => {
   const [blockData, setBlockData] = useState<ResponseBlocksLatest | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
@@ -30,7 +33,7 @@ export const LatestBlocks = () => {
     };
   }, []);
 
-  return isLoading || !blockData ? (
+  return isLoading || !blockData || !blockTime ? (
     <Grid container spacing={3} mb={3}>
       <Grid item lg={4}>
         <Skeleton variant="rectangular" height={118} />
@@ -53,10 +56,7 @@ export const LatestBlocks = () => {
         />
       </Grid>
       <Grid item lg={4}>
-        <CardBlocks
-          title="TIME"
-          amount={formatDate(blockData?.block?.header?.time ?? "")}
-        />
+        <CardBlocks title="BLOCK TIME" amount={blockTime.toFixed(2)} />
       </Grid>
       <Grid item lg={4}>
         <CardBlocks

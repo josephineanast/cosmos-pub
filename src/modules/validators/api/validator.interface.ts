@@ -62,6 +62,8 @@ interface UptimePeriod {
   uptime: number;
 }
 
+/* eslint-disable */
+
 export interface ValidatorResponse {
   name: string;
   validators: {

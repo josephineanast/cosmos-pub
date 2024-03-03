@@ -17,7 +17,6 @@ export const CoinData = () => {
           `https://api.coingecko.com/api/v3/coins/${coinId}`
         );
         const data = await response.json();
-        console.log(data);
         setCoin(data);
       } catch (error: any) {
         setError(error);

@@ -3,7 +3,7 @@ import { Grid, Paper, Typography } from "@mui/material";
 
 interface Props {
   title: string;
-  amount: string;
+  amount: string | number;
 }
 
 export const CardBlocks = ({ title, amount }: Props) => {
